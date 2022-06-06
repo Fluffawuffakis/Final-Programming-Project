@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Toaster : MonoBehaviour
 {
-    public GameObject toast;
+    public GameObject food;
     public GameObject toaster;
     public Rigidbody toasterRb;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,11 +20,18 @@ public class Toaster : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Instantiate(toast, new Vector3(gameObject.transform.position.x, 1.25f, gameObject.transform.position.z), toast.transform.rotation);
+            CreateFood();
         }
     }
+
+    public virtual void CreateFood()
+    {
+        Instantiate(food, new Vector3(gameObject.transform.position.x, 1.25f, gameObject.transform.position.z), food.transform.rotation);
+    }
+
+   
 }

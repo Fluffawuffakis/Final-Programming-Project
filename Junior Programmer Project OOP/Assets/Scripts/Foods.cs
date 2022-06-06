@@ -11,7 +11,7 @@ public class Foods : MonoBehaviour
     }
     public void Awake()
     {
-        foodRb.AddForce(Vector3.up * 4, ForceMode.Impulse); //food specific force);
+        LaunchFood();
     }
 
     // Start is called before the first frame update
@@ -21,5 +21,17 @@ public class Foods : MonoBehaviour
     void Update()
     {
        
+    }
+
+    public virtual void LaunchFood()
+    {
+        foodRb.AddForce(Vector3.up * 4, ForceMode.Impulse); //food specific force);
+        StartCoroutine(DestroyFood());
+    }
+
+    public IEnumerator DestroyFood()
+    {
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
     }
 }
