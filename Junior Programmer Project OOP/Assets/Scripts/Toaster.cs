@@ -19,8 +19,11 @@ public class Toaster : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        Instantiate(toast);
+        if (other.CompareTag("Player"))
+        {
+            Instantiate(toast, new Vector3(gameObject.transform.position.x, 1.25f, gameObject.transform.position.z), toast.transform.rotation);
+        }
     }
 }
